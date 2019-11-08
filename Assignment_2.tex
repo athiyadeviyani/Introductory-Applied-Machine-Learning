@@ -116,7 +116,7 @@ Your Answer Here
 
 
 
-\answerbox{9em}{
+\answerbox{8em}{
 Your Answer Here
 }
 
@@ -138,11 +138,11 @@ Your Answer Here
 \end{subquestion}
 
 
-\begin{subquestion}{(5 points) We will use the Adjusted Mutual Information (AMI) \ie \href{https://scikit-learn.org/stable/modules/clustering.html\#mutual-info-score}{\texttt{adjusted\_mutual\\\_info\_score}} between the clusters and the true (known) labels to quantify the performance of the clustering. Give an expression for the MI in terms of entropy. In short, describe what the MI measures about two variables, why this is applicable here and why it might be difficult to use in practice. \hint{MI is sometimes referred to as Information Gain: note that you are asked about the standard way we defined MI and not the AMI which is adjusted for the size of the domain and for chance agreement (you don't need to explain how the latter works).}}
+\begin{subquestion}{(5 points) We will use the Adjusted Mutual Information (AMI) \ie \href{https://scikit-learn.org/stable/modules/clustering.html\#mutual-info-score}{\texttt{adjusted\_mutual\\\_info\_score}} between the clusters and the true (known) labels to quantify the performance of the clustering. Give an expression for the MI in terms of entropy. In short, describe what the MI measures about two variables, why this is applicable here and why it might be difficult to use in practice. \hint{MI is sometimes referred to as Information Gain: note that you are asked only about the standard way we defined MI and not the AMI which is adjusted for the size of the domain and for chance agreement.}}
 
 
 
-\answerbox{14em}{
+\answerbox{16em}{
 Your Answer Here
 }
 
@@ -271,7 +271,7 @@ Your Image Here
 
 \end{subquestion}
 
-\begin{subquestion}{(7 points) Which is the optimal value of $C$ (and the corresponding score). How did you get this value? By making reference to the effect of the regularisation parameter $C$ on the optimisation, explain what is happening in your plot from Question \ref{Q_LR_NG}:\ref{Q_LOG_REG_PLT} \hint{Refer to the documentation for $C$ in the \href{https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html}{LogisticRegression} page on SKLearn}.}
+\begin{subquestion}{(7 points) What is the optimal value of $C$ (and the corresponding score)? How did you choose this value? By making reference to the effect of the regularisation parameter $C$ on the optimisation, explain what is happening in your plot from Question \ref{Q_LR_NG}:\ref{Q_LOG_REG_PLT} \hint{Refer to the documentation for $C$ in the \href{https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html}{LogisticRegression} page on SKLearn}.}
 
 
 
@@ -283,7 +283,7 @@ Your Answer Here
 
 \end{subquestion}
 
-\begin{subquestion}{(2 points) Finally, report the score of the best model on the test-set, after retraining on the entire training set (that is drop the folds). \hint{You may need to set \texttt{max\_iter = 200}.} Comment on the result.}
+\begin{subquestion}{(2 points) Finally, report the score of the best model on the test-set, after retraining on the entire training set (that is drop the folds). \hint{You may need to set \texttt{max\_iter = 200}.} Comment briefly on the result.}
 
 
 
@@ -312,7 +312,7 @@ Your Answer Here
 
 \clearpage
 
-\assignmentSection{Part B: Bristol Air-Quality [89 points]}
+\assignmentSection{Part B: Bristol Air-Quality [90 points]}
 
 
 
@@ -335,7 +335,8 @@ Your Answer Here
 
 \end{subquestion}
 
-\begin{subquestion}{(6 points) Repeat the same analysis but this time on a per-site basis. Provide a table with the number of samples and percentage of problematic samples (negative and missing) in each site: \ie for each issue, count the number of samples having that issue in at least one of the columns. \hint{Pandas has a handy method, \texttt{to\_latex()}, for generating a latex table from a dataframe.}}
+\begin{subquestion}{(6 points) Repeat the same analysis but this time on a per-site basis. Provide a table with the number of samples and percentage of problematic samples (negative and missing) in each site. To report numbers, count a row which has at least one missing entry
+as having missing data, and similarly for negative entries. \hint{Pandas has a handy method, \texttt{to\_latex()}, for generating a latex table from a dataframe.}}
 
 
 
@@ -363,7 +364,7 @@ Your Answer Here
 
 
 
-\answerbox{8em}{
+\answerbox{10em}{
 Your Table Here
 }
 
@@ -375,7 +376,7 @@ Your Table Here
 
 
 
-\answerbox{6em}{
+\answerbox{7em}{
 Your Answer Here
 }
 
@@ -401,7 +402,7 @@ Your Image Here
 
 
 
-\answerbox{10em}{
+\answerbox{12em}{
 Your Answer Here
 }
 
@@ -414,13 +415,13 @@ Your Answer Here
 
 %============================================================================%
 
-\begin{question}{(18 Points) Principal Component Analysis}
+\begin{question}{(19 Points) Principal Component Analysis}
 
 \questiontext{One aspect which we have not yet explored is the temporal nature of the data. That is, we need to keep in mind that the readings have a temporal aspect to them which can provide some interesting insight. We will explore this next.}
 
 
 
-\begin{subquestion}{(2 points) Plot the first 5 lines of data (plot each row as a single line-plot).}
+\begin{subquestion}{(1 point) Plot the first 5 lines of data (plot each row as a single line-plot).}
 
 
 
@@ -434,7 +435,7 @@ Your Image Here
 
 
 
-\begin{subquestion}{(5 points) We will focus first on data solely from Site 1. Extract the data from this site, and run PCA with the number of components set to 72 for now. Set the \texttt{random\_state=0}. On a single plot plot: (i) the percentage of the variance explained by each principal component (as a bar-chart), (ii) the cumulative variance (line-plot) explained by the first $n$ components: (\hint{you should use \href{https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.axes.Axes.twinx.html}{\texttt{twinx()}} to make the plot fit}), \textsl{and}, (iii) mark the point (number of components) which collectively explain at least 95\% of the variance. \hint{Number components starting from 1.}}
+\begin{subquestion}{(5 points) We will focus first on data solely from Site 1. Extract the data from this site, and run PCA with the number of components set to 72 for now. Set the \texttt{random\_state=0}. On a single graph plot: (i) the percentage of the variance explained by each principal component (as a bar-chart), (ii) the cumulative variance (line-plot) explained by the first $n$ components: (\hint{you should use \href{https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.axes.Axes.twinx.html}{\texttt{twinx()}} to make the plot fit}), \textsl{and}, (iii) mark the point at which the number of components collectively explain at least 95\% of the variance (using a vertical line). \hint{Number components starting from 1.}}
 
 
 
@@ -450,7 +451,7 @@ Your Image Here
 
 
 
-\answerbox{8em}{
+\answerbox{9em}{
 Your Answer Here
 }
 
@@ -459,11 +460,11 @@ Your Answer Here
 \end{subquestion}
 
 
-\begin{subquestion}{(4 points) Generate two figures, one for each of the first 2 principal components: in each, plot the component as three lines, one for each pollutant throught one day cycle. \hint{You will need to reshape the components with an `F' ordering.}}
+\begin{subquestion}{(5 points) Generate three figures, one for the mean and one for each of the first 2 principal components: in each, plot the mean/component as three lines, one for each pollutant throught one day cycle. \hint{You will need to reshape the components appropriately.}}
 
 
 
-\answerbox{40em}{
+\answerbox{50em}{
 Your Image Here
 }
 
@@ -471,11 +472,11 @@ Your Image Here
 
 \end{subquestion}
 
-\begin{subquestion}{(5 points) By focusing mostly on the first principal component, are there any significant patterns which emerge throughout the day? \hint{Think about car usage throughout the day.} Also, are there any significant differences between the signals and why could this be happening? \hint{You can refer to one of the limitations of PCA.}}
+\begin{subquestion}{(6 points) Focusing on the mean and first principal component, are there any significant patterns which emerge throughout the day? \hint{Think about car usage throughout the day.} What is different when interpreting the mean versus the first component? \hint{Do peaks signify the same thing in both cases?} Looking at the principal components only, are there any significant differences between the pollutants? Why could this be happening? \hint{You can refer to one of the limitations of PCA.}}
 
 
 
-\answerbox{12em}{
+\answerbox{16em}{
 Your Answer Here
 }
 
@@ -495,7 +496,7 @@ Your Answer Here
 
 
 
-\begin{subquestion}{(2 points) First things first: since we are dealing with a supervised task, we will need to split our data into a training and testing set. Furthermore, since our regressors will involve hyper-parameter tuning, we will also need a validation set. Use the \texttt{multi\_way\_split()} method from \texttt{mpctools.extensions.skext} to split the data into a Training (60\%), Validation (15\%) and Testing (25\%) set: use the \href{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.ShuffleSplit.html}{ShuffleSplit} object from sklearn for the \texttt{splitter}. Set the random state to 0. \hint{The method gives you the indices of the split for each set, which can then be applied to multiple matrices.} Report the sizes of each dataset.}
+\begin{subquestion}{(2 points) First things first: since we are dealing with a supervised task, we will need to split our data into a training and testing set. Furthermore, since some of our regressors will involve hyper-parameter tuning, we will also need a validation set. Use the \texttt{multi\_way\_split()} method from \texttt{mpctools.extensions.skext} to split the data into a Training (60\%), Validation (15\%) and Testing (25\%) set: use the \href{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.ShuffleSplit.html}{ShuffleSplit} object from sklearn for the \texttt{splitter}. Set the random state to 0. \hint{The method gives you the indices of the split for each set, which can then be applied to multiple matrices.} Report the sizes of each dataset.}
 
 
 
@@ -523,7 +524,7 @@ Your Answer Here
 
 
 
-\answerbox{6em}{
+\answerbox{7em}{
 Your Answer Here
 }
 
@@ -533,11 +534,11 @@ Your Answer Here
 
 
 
-\begin{subquestion}{(5 points) We want to explore further what the model is learning. Explain why in Linear Regression, we cannot just blindly use the weights of the regression coefficients to evaluate the relative importance of each feature, but rather we have to normalise the features. By referring to the documentation for the \href{http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html}{LinearRegression} implementation in SKLearn, explain what the normalisation does and how it helps in comparing features. Will this affect the performance of the LR?}
+\begin{subquestion}{(5 points) We want to explore further what the model is learning. Explain why in Linear Regression, we cannot just blindly use the weights of the regression coefficients to evaluate the relative importance of each feature, but rather we have to normalise the features. By referring to the documentation for the \href{http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html}{LinearRegression} implementation in SKLearn, explain what the normalisation does and how it helps in comparing features. Will this affect the performance of the Linear Regressor?}
 
 
 
-\answerbox{8em}{
+\answerbox{10em}{
 Your Answer Here
 }
 
@@ -549,7 +550,7 @@ Your Answer Here
 
 
 
-\answerbox{14em}{
+\answerbox{15em}{
 Your Answer Here
 }
 
@@ -557,11 +558,11 @@ Your Answer Here
 
 \end{subquestion}
 
-\begin{subquestion}{(5 points) It might be that with non-linear models, we may get better performance. Let us try to use \href{https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsRegressor.html}{K-Nearest-Neighbours}. Train a KNN regressor with default parameters on the training set and report performance on the training and validation set. \hint{it might be beneficial to set \texttt{n\_jobs=-1} to improve performance.} How does it compare with the LR in terms of performance on both sets? What is a limitation of the KNN algorithm for our dataset?}
+\begin{subquestion}{(5 points) It might be that with non-linear models, we may get better performance. Let us try to use \href{https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsRegressor.html}{K-Nearest-Neighbours}. Train a KNN regressor with default parameters on the training set and report performance on the training and validation set. \hint{it might be beneficial to set \texttt{n\_jobs=-1} to improve performance.} How does it compare with Linear Regression in terms of performance on both sets? What is a limitation of the KNN algorithm for our dataset?}
 
 
 
-\answerbox{7em}{
+\answerbox{8em}{
 Your Answer Here
 }
 
@@ -569,7 +570,7 @@ Your Answer Here
 
 \end{subquestion}
 
-\begin{subquestion}{(4 points) The KNN regression allows setting a number of hyper-parameters. We will optimise only one: the number of neighbours to use. By using the validation set, find the optimal value for the \texttt{n\_neighbours} parameter out of the values [2, 4, 8, 16, 32]. Plot the training/validation RMSE and indicate (for example through a line) the best value for \texttt{n\_neighbours}.}
+\begin{subquestion}{(4 points) The KNN regression allows setting a number of hyper-parameters. We will optimise only one: the number of neighbours to use. By using the validation set, find the optimal value for the \texttt{n\_neighbours} parameter out of the values [2, 4, 8, 16, 32]. Plot the training/validation RMSE and indicate (for example with a line) the best value for \texttt{n\_neighbours}.}
 
 
 
@@ -581,11 +582,11 @@ Your Image Here
 
 \end{subquestion}
 
-\begin{subquestion}{(1 points) What is the best-case RMSE performance on the validation set?}
+\begin{subquestion}{(1 points) What is the best-case RMSE performance on the validation set for KNN?}
 
 
 
-\answerbox{4em}{
+\answerbox{6em}{
 Your Answer Here
 }
 
@@ -617,7 +618,7 @@ Your Answer Here
 
 \end{subquestion}
 
-\begin{subquestion}{(5 points) To conclude let us now compare all the models on the testing set. Combine the training and validation sets (remember to use the version with the one-hot encoding) and retrain the model from each family on it: in cases where we optimised hyper-parameters, set this to the best-case value. Report the testing-set performance of each model in a table \hint{You should have 4 values}.}
+\begin{subquestion}{(5 points) To conclude let us now compare all the models on the testing set. Combine the training and validation sets and retrain the model from each family on it: in cases where we optimised hyper-parameters, set this to the best-case value. Report the testing-set performance of each model in a table \hint{You should have 4 values}.}
 
 
 
