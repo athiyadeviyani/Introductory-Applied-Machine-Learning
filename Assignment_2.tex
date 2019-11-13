@@ -39,7 +39,7 @@
 
 %--------------------------------------------------------
 %   IMPORTANT: Specify your Student ID below [You will need to uncomment the line, else compilation will fail]. Make sure to specify your student ID correctly, otherwise we may not be able to identify your work and you will be marked as missing.
-%\newcommand{\assignmentAuthorName}{s1234567}
+\newcommand{\assignmentAuthorName}{s1709906}
 %--------------------------------------------------------
 
 \begin{document}
@@ -68,7 +68,7 @@
 
 
 \answerbox{12em}{
-Your Answer Here
+The training set has 5866 entries, which means it has 5866 different documents, with 1001 unique words (key features). It also has 8 different class labels representing each news group. After grouping the data into their respective classes, I found out that out of all the newsgroups, class 7 (`soc.religion.christian`) has significantly fewer data compared to the other classes. All of the other classes have more than 700 values, but class 7 has lesser than 500. By examining the mean and standard deviation of each word, I could see that the words have similar low TF-IDF values.
 }
 
 
@@ -80,7 +80,7 @@ Your Answer Here
 
 
 \answerbox{10em}{
-Your Answer Here
+The testing set has 1883 documents and 1001 unique words. The training set and the testing set are split 75\% - 25\%. This split is good because it does not overfit the model. There is a similar trend in the testing set with regards to the significantly lesser amount of data for class 7. All of the other classes have above 240 values and class 7 only has 157. The percentage of class 7 in the training set and the test set and they were both 8.34\%. This is not a problem in the test set, unlike the training set because it's never a good idea to train with lesser data for a certain class.
 }
 
 
@@ -92,7 +92,8 @@ Your Answer Here
 
 
 \answerbox{10em}{
-Your Answer Here
+TF-IDF weights is a statistical measure to evaluate how important a word is to a document in a collection. The importance of a word is directly proportional to the word frequency in the document, but it is offset by the frequency of the word in the entire collection.
+It is useful to consider TF-IDF as opposed to just the word frequency in the document because it helps eliminate 'unimportant' words that are used frequently from the feature vectors by setting their weight close to 0, such as stop words. It also helps avoid irrelevant and costly computations.
 }
 
 
@@ -117,7 +118,7 @@ Your Answer Here
 
 
 \answerbox{8em}{
-Your Answer Here
+Non-deterministic means that running the algorithm several times on the same data, could give different results (test points classified differently in each iteration). This is due to the algorithm's random selection of data points as initial cluster centres. In the SKLearn implementation of KMeans, we do not explicitly select the initial cluster centres - instead, the model will select them for us. This will speed up the convergence of the algorithm.
 }
 
 
@@ -130,7 +131,7 @@ Your Answer Here
 
 
 \answerbox{5em}{
-Your Answer Here
+A reasonable number of clusters would be 8, because there are 8 news groups and we want to classify which words typically belong to which group.
 }
 
 
@@ -143,7 +144,13 @@ Your Answer Here
 
 
 \answerbox{16em}{
-Your Answer Here
+The formula for Mutual Information (MI) in terms of entropy is the following:
+
+\begin{equation} 
+\text{MI}(U,V)= \sum_{i=1}^{|U|} \sum_{j=1}^{|V|} P(i,j)  \log{P(i,j)\over{P(i)P(j)}} = H(V) - H(V|U)
+\end{equation}
+
+where \textit{H(V)} is the entropy of \textit{V} and \textit{H(V|U)} is a measure of what \textit{V} doesn't say about \textit{U}. It follows that MI is the amount of information (decrease in uncertainty) you get about one variable given knowledge of another. MI calculates the statistical dependence between the two variables. Since words are not independent, knowing one of them can give us more information about the next word (like how a the word 'the' is usually followed by a noun). In practice, maximising MI is infeasible because the set of possible combinations of features grows exponentially.
 }
 
 
@@ -155,7 +162,9 @@ Your Answer Here
 
 
 \answerbox{40em}{
-Your Image Here
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{2_d.png}
+\end{center}
 }
 
 
@@ -167,7 +176,7 @@ Your Image Here
 
 
 \answerbox{10em}{
-Your Answer Here
+The plot of AMI scores against the number of clusters shows a peak at n=9. I found this quite interesting because I expected that the AMI score will be the highest when there are 8 clusters, since there are 8 newsgroups. This might be because there are some ambiguous words that falls in more than 1 cluster and these ambiguous words are clustered together into a separate cluster, keeping the 8 other clusters relatively pure. As the number of clusters increase past 9, the AMI score decreases due to overfitting.
 }
 
 
@@ -179,7 +188,9 @@ Your Answer Here
 
 
 \answerbox{40em}{
-Your Image Here
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{2_f.png}
+\end{center}
 }
 
 
@@ -191,7 +202,8 @@ Your Image Here
 
 
 \answerbox{14em}{
-Your Answer Here
+There are 4 bigger subgroups that you can generalise from the 8 newsgroups. This is noticeable in the bar chart - the 1st cluster has the main datapoint as classes 0, 1 and 5 (Electronics), the 2nd cluster contains almost only class 4 (Cryptography), the 3rd cluster has the classes 6 and 7 (Religion). The last cluster has a mix of all the classes but its main datapoint are classes 2 and 3 (Automotive).
+The cryptography group is well-separated and this is well-identified by the clustering algorithm. The classes that are the hardest to determine by the cluster assignments are classes 2 and 3 which are confused with all the other classes. The plot conforms with my observations in Q(2.e) as there is a local maxima when the number of clusters is 4 and the clustering has been somewhat successful at separating the data into their bigger subgroups, however not all the clusters are pure.
 }
 
 
@@ -215,7 +227,7 @@ Your Answer Here
 
 
 \answerbox{8em}{
-Your Answer Here
+The F1-score ((2*precision*recall)/(precision+recall)) conveys the balance between the precision and the recall. It is more preferable to use accuracy in our problem because false positives and false negatives have similar cost and we have relatively even classes. To calculate the classifier's overall F1-score combine the per-class F1-scores into a single number. The simplest way to do that is to is to compute an arithmetic mean of the per-class F1-scores, called the macro-average.
 }
 
 
@@ -228,7 +240,9 @@ Your Answer Here
 
 
 \answerbox{8em}{
-Your Answer Here
+I selected the class that has the most observations (in this case it's a tie between classes 3 and 6) and used that class as the result for all the predictions. This method is theoretically expected to perform better than random guessing. 
+
+After running the baseline classifier (predicting that all the values belong to class 3), I obtained the F1-score of 0.0292.
 }
 
 
@@ -240,7 +254,7 @@ Your Answer Here
 
 
 \answerbox{9em}{
-Your Answer Here
+The LogisticRegression Classifier can fit binary, One-vs-Rest, or multinomial logistic regression. Multi-class logistic regression utilises the softmax function to get the class probabilities. This function replaces the sigmoid logistic function used in binary logistic regression. The output of a softmax function is equal to the number of classes, and they sum up to one, therefore they are equal to the probabilities of each class.
 }
 
 
@@ -252,7 +266,10 @@ Your Answer Here
 
 
 \answerbox{9em}{
-Your Answer Here
+Average validation-set F1-score = 0.668
+\\Standard deviation = 0.0158
+\\
+\\The baseline classifier has significantly lower F1-score at 0.0291. Therefore, the logistic regression classifier performs significantly better than the baseline classifier. This shows a successful classification by the logistic model.
 }
 
 
@@ -264,7 +281,9 @@ Your Answer Here
 
 
 \answerbox{40em}{
-Your Image Here
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{3_e.png}
+\end{center}
 }
 
 
@@ -276,7 +295,7 @@ Your Image Here
 
 
 \answerbox{11em}{
-Your Answer Here
+The most optimal value of C is 1.0 with a corresponding F1-score of 0.668. I chose this value by examining the F1-scores of the validation set and looked at the maximum, and find the corresponding value of C that yields that value. The effect of the regularisation parameter C on the optimisation is strong. This causes the model to become less sensitive to noise. However, at some point it becomes insensitive to important features. this is shown by the F1-score being low on small C values. Then the F1-score increases when C increased and reached its peak at 1.0, and after that it continues to decrease until it reaches a (somewhat) plateau.
 }
 
 
@@ -288,7 +307,7 @@ Your Answer Here
 
 
 \answerbox{7em}{
-Your Answer Here
+The F1-score on the test set is 0.675 after using the optimal C-value and retraining on the entire training set. This value is higher than the average validation-set F1-score (0.668) that I calculated in Q(3.d) and the average validation-set F1-score (0.668) that I calculated in Q(3.e) using folds.
 }
 
 
@@ -328,7 +347,7 @@ Your Answer Here
 
 
 \answerbox{13em}{
-Your Answer Here
+There are 1306758 values for each column - Date/Time, followed by the three pollutants, SiteID, and the latitude and longitude of the site. I observed that there are some samples that are either empty or have a value below 0 (negative), which is unreasonable because the values are measured in $\mu g/m^{3}$, and they only range over positive values. There are 18 unique sites in total that are being studied. Grouping the data into their respective SiteIDs, I noticed that there are significantly lesser values for site 15 than all the other sites, with only 2712 values, followed by site 0 with 6446. This is very few compared to sites 1, 5, 6, 7, 14, 16, which has more than 100000 values. All the other sites range between 10000 and 100000. For the pollutants, NOx has the highest mean, followed by NO and NO2.
 }
 
 
@@ -341,7 +360,31 @@ as having missing data, and similarly for negative entries. \hint{Pandas has a h
 
 
 \answerbox{17em}{
-Your Table Here
+\begin{tabular}{rrrr}
+\toprule
+ SiteID &  Negative (\%) &  Missing (\%) &  Total samples \\
+\midrule
+      0 &         0.000 &        1.613 &           6446 \\
+      1 &         0.000 &        6.290 &         163111 \\
+      2 &         0.000 &        4.348 &          62990 \\
+      3 &         0.271 &       77.333 &          25464 \\
+      4 &         0.000 &        2.069 &          74787 \\
+      5 &         0.000 &        8.828 &         113952 \\
+      6 &         0.000 &        7.444 &         142141 \\
+      7 &         0.000 &        4.195 &         115162 \\
+      8 &         0.000 &       21.057 &          43824 \\
+      9 &         0.000 &        5.301 &          22071 \\
+     10 &         0.000 &        3.590 &          96407 \\
+     11 &         0.000 &        1.904 &          20693 \\
+     12 &         0.000 &       17.485 &          45240 \\
+     13 &         0.000 &       51.461 &          12423 \\
+     14 &         0.000 &       10.532 &         113951 \\
+     15 &         0.000 &      100.000 &           2712 \\
+     16 &         0.000 &        6.531 &         154331 \\
+     17 &         0.000 &        6.271 &          91053 \\
+\bottomrule
+\end{tabular}
+
 }
 
 
@@ -353,7 +396,7 @@ Your Table Here
 
 
 \answerbox{11em}{
-Your Answer Here
+Site 15 has the highest problematic values percentage of 100\%. After examining the table, I can see that there are no samples for site 15 (all the problematic values are due to missing samples). The next highest problematic values percentage belongs to Site 3 at 77.6\%, with a mixture of negative and missing samples. In fact, all the negative samples in the dataset belongs to Site 3. This value is followed by site 13 (51.46\%), site 8 (21.1\%), and site 12 (17.48\%). Every other site has a problematic sample percentage of less than 10\%.
 }
 
 
@@ -365,7 +408,17 @@ Your Answer Here
 
 
 \answerbox{10em}{
-Your Table Here
+\newline   
+\newline
+\begin{tabular}{lrrr}
+\toprule
+{} &    NOx &    NO2 &     NO \\
+\midrule
+NOx &  1.000 &  0.878 &  0.988 \\
+NO2 &  0.878 &  1.000 &  0.808 \\
+NO  &  0.988 &  0.808 &  1.000 \\
+\bottomrule
+\end{tabular}
 }
 
 
@@ -377,7 +430,7 @@ Your Table Here
 
 
 \answerbox{7em}{
-Your Answer Here
+The highest correlation is between NOx and NO, with a coefficient of 0.988. This is followed by the correlation of NOx and NO2, with a coefficient of 0.878. The lowest correlation is between NO2 and NO, with a coefficient of 0.808. Overall, I can observe that the pollutants have a strong positive correlation with each other.
 }
 
 
@@ -391,7 +444,9 @@ Your Answer Here
 
 
 \answerbox{40em}{
-Your Image Here
+\begin{center}
+    \includegraphics[width=1.0\textwidth]{4_f.png}
+\end{center}
 }
 
 
@@ -403,7 +458,7 @@ Your Image Here
 
 
 \answerbox{12em}{
-Your Answer Here
+For NO gas, the highest correlation is between site 2 and 16 (0.79), followed by 1 and 16 (0.78), then 16 and 17 (0.76). The lowest correlation is between site 7 and 14 (0.35), followed by site 7 and 6 (0.45), then 6 and 12 (0.47). These trends are also spotted in NOx and NO2. In fact, the correlation between the sites for each pollutant varies very slightly, as the heatmap looks rather identical at first glance. The lowest correlation between sites can usually be found on NO2, and the highest correlation between sites can usually by found on NOx.
 }
 
 
@@ -426,7 +481,13 @@ Your Answer Here
 
 
 \answerbox{40em}{
-Your Image Here
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{5_a_1.png}
+    \includegraphics[width=0.9\textwidth]{5_a_2.png}
+    \includegraphics[width=0.9\textwidth]{5_a_3.png}
+    \includegraphics[width=0.9\textwidth]{5_a_4.png}
+    \includegraphics[width=0.9\textwidth]{5_a_5.png}
+\end{center}
 }
 
 
@@ -440,7 +501,9 @@ Your Image Here
 
 
 \answerbox{40em}{
-Your Image Here
+\begin{center}
+    \includegraphics[width=1.0\textwidth]{5_b.png}
+\end{center}
 }
 
 
@@ -452,7 +515,7 @@ Your Image Here
 
 
 \answerbox{9em}{
-Your Answer Here
+The percentage of total variance explained reduces exponentially as the number of principal components increase. The highest percentage of total variance explained is when the number of principal components is 1. The number of components which collectively explain at least 95\% of the variance is 10.
 }
 
 
@@ -465,7 +528,11 @@ Your Answer Here
 
 
 \answerbox{50em}{
-Your Image Here
+\begin{center}
+    \includegraphics[width=1.0\textwidth]{5_d_mean.png}
+    \includegraphics[width=1.0\textwidth]{5_d_pca1.png}
+    \includegraphics[width=1.0\textwidth]{5_d_pca2.png}
+\end{center}
 }
 
 
@@ -477,7 +544,8 @@ Your Image Here
 
 
 \answerbox{16em}{
-Your Answer Here
+For both the mean and PCA, the highest pollutant value belongs to NOx. The highest and lowest values recorded throughout the day are similar for both mean and first PCA, as well as for all three pollutants. The lowest value is around the 4th hour of the day (4AM) where most of the population is not commuting. The peak value is around the 9th hour of the day (9 AM). This is as expected because this is when people use their transportation vehicles to go to their place of destination for the day - work, school, etc. The value reaches a local minima at around the 15th hour of the day (3 PM), probably because most people are doing indoor activities. The pollutant value peaks again at around the 20th hour (8 PM), when everyone is communting home after completing their day.
+TODO: CONTINUE EXPLAINING ABOUT MEAN VS PCA
 }
 
 
@@ -501,7 +569,7 @@ Your Answer Here
 
 
 \answerbox{4em}{
-Your Answer Here
+Training set: 8937, validation set: 2234, testing set: 3724
 }
 
 
@@ -513,7 +581,10 @@ Your Answer Here
 
 
 \answerbox{8em}{
-Your Answer Here
+The baseline regressor that I used assigns the central tendency measure as the result for all predictions. The central tendency measure that I chose is the mean. 
+\\
+\\ The RMSE of the baseline regressor on the training set is: 79.714
+\\ The RMSE value of the baseline regressor on the validation set is: 80.190
 }
 
 
@@ -525,7 +596,9 @@ Your Answer Here
 
 
 \answerbox{7em}{
-Your Answer Here
+\\The RMSE value for the training set is: 39.835
+\\The RMSE value for the validation set is: 41.127
+\\From these values we can observe that the Linear Regression algorithm does significantly better than the baseline regressor.
 }
 
 
