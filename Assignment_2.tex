@@ -545,7 +545,7 @@ The percentage of total variance explained reduces exponentially as the number o
 
 \answerbox{16em}{
 For both the mean and PCA, the highest pollutant value belongs to NOx. The highest and lowest values recorded throughout the day are similar for both mean and first PCA, as well as for all three pollutants. The lowest value is around the 4th hour of the day (4AM) where most of the population is not commuting. The peak value is around the 9th hour of the day (9 AM). This is as expected because this is when people use their transportation vehicles to go to their place of destination for the day - work, school, etc. The value reaches a local minima at around the 15th hour of the day (3 PM), probably because most people are doing indoor activities. The pollutant value peaks again at around the 20th hour (8 PM), when everyone is communting home after completing their day.
-TODO: CONTINUE EXPLAINING ABOUT MEAN VS PCA
+NOTANSWERED: CONTINUE EXPLAINING ABOUT MEAN VS PCA
 }
 
 
@@ -612,7 +612,7 @@ The baseline regressor that I used assigns the central tendency measure as the r
 
 
 \answerbox{10em}{
-Your Answer Here
+NOTANSWERED: REFER TO ASSIGNMENT1 FEEDBACK
 }
 
 
@@ -624,7 +624,33 @@ Your Answer Here
 
 
 \answerbox{15em}{
-Your Answer Here
+\begin{tabular}{ll}
+\begin{tabular}{rr}
+\toprule
+ SiteID &  Correlation Coefficient \\
+\midrule
+      6 &                -0.006799 \\
+      2 &                 0.009947 \\
+      7 &                 0.059388 \\
+     10 &                 0.079779 \\
+     14 &                 0.094507 \\
+\bottomrule
+\end{tabular}
+&
+\begin{tabular}{rr}
+\toprule
+ SiteID &  Correlation Coefficient \\
+\midrule
+      1 &                 0.115556 \\
+     12 &                 0.129110 \\
+      4 &                 0.134139 \\
+     16 &                 0.161828 \\
+\bottomrule
+\end{tabular}
+\end{tabular}
+\\
+\\ The most important site is site 16 with a correlation coefficient of 0.162 and the least important site is site 6 with a correlation coefficient of -0.007.
+\\ NOTANSWERED: DIFFERENCE BETWEEN NORMALIZED AND UNNORMALIZED
 }
 
 
@@ -636,7 +662,14 @@ Your Answer Here
 
 
 \answerbox{8em}{
-Your Answer Here
+
+KNN regression RMSE on the training set: 32.437 | validation set: 40.307
+
+Linear Regression RMSE on the training set: 39.835 | validation set: 41.127
+
+From these values we can observe that the KNN regression algorithm has a better performance (lower RMSE) compared to the linear regression algorithm.
+
+NOTANSWERED: limitation of the KNN algorithm on our dataset
 }
 
 
@@ -648,7 +681,9 @@ Your Answer Here
 
 
 \answerbox{40em}{
-Your Image Here
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{6_g.png}
+\end{center}
 }
 
 
@@ -660,7 +695,7 @@ Your Image Here
 
 
 \answerbox{6em}{
-Your Answer Here
+The best-case RMSE performance on the validation set is 38.902. This is obtained when \texttt{n\_neighbors} is set to 16.
 }
 
 
@@ -672,7 +707,9 @@ Your Answer Here
 
 
 \answerbox{40em}{
-Your Image Here
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{6_i.png}
+\end{center}
 }
 
 
@@ -684,7 +721,7 @@ Your Image Here
 
 
 \answerbox{6em}{
-Your Answer Here
+The best-case RMSE on the validation set is 45.844, with a corresponding maximum depth value set at 8. For the training set, increasing max depth reduces the RMSE to zero. For the validation set, increasing max depth overfits the training data without capturing useful patterns and cause RMSE to increase.
 }
 
 
@@ -696,7 +733,26 @@ Your Answer Here
 
 
 \answerbox{6em}{
-Your Answer Here
+\begin{tabular}{ll}
+\begin{tabular}{lr}
+\toprule
+Regressor &  RMSE on Testing Set \\
+\midrule
+ Baseline &            78.918259 \\
+   Linear &            40.516094 \\
+\bottomrule
+\end{tabular}
+&
+\begin{tabular}{lr}
+\toprule
+     Regressor &  RMSE on Testing Set \\
+\midrule
+           KNN &            38.720213 \\
+ Decision Tree &            43.557912 \\
+\bottomrule
+\end{tabular}
+\end{tabular}
+
 }
 
 
