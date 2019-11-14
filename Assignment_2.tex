@@ -150,7 +150,7 @@ The formula for Mutual Information (MI) in terms of entropy is the following:
 \text{MI}(U,V)= \sum_{i=1}^{|U|} \sum_{j=1}^{|V|} P(i,j)  \log{P(i,j)\over{P(i)P(j)}} = H(V) - H(V|U)
 \end{equation}
 
-where \textit{H(V)} is the entropy of \textit{V} and \textit{H(V|U)} is a measure of what \textit{V} doesn't say about \textit{U}. It follows that MI is the amount of information (decrease in uncertainty) you get about one variable given knowledge of another. MI calculates the statistical dependence between the two variables. Since words are not independent, knowing one of them can give us more information about the next word (like how a the word 'the' is usually followed by a noun). In practice, maximising MI is infeasible because the set of possible combinations of features grows exponentially.
+where \textit{H(V)} is the entropy of \textit{V} and \textit{H(V|U)} is a measure of what \textit{V} doesn't say about \textit{U}. It follows that MI is the amount of information (decrease in uncertainty) you get about one variable given knowledge of another. MI calculates the statistical dependence between the two variables. Since words are not independent, knowing one of them can give us more information about the next word. MI based measures require the knowledge of the true class values which are almost never available in practice or require manual assignment by human annotators. 
 }
 
 
@@ -360,35 +360,31 @@ as having missing data, and similarly for negative entries. \hint{Pandas has a h
 
 
 \answerbox{17em}{
-\begin{tabular}{rrrr}
+\begin{adjustbox}
+\small
+\begin{tabular}{llllllllll}
 \toprule
- SiteID &  Negative (\%) &  Missing (\%) &  Total samples \\
+SiteID   &      0 &       1 &      2 &       3 &      4 &       5 &       6 &       7 &       8 \\
 \midrule
-      0 &         0.000 &        1.613 &           6446 \\
-      1 &         0.000 &        6.290 &         163111 \\
-      2 &         0.000 &        4.348 &          62990 \\
-      3 &         0.271 &       77.333 &          25464 \\
-      4 &         0.000 &        2.069 &          74787 \\
-      5 &         0.000 &        8.828 &         113952 \\
-      6 &         0.000 &        7.444 &         142141 \\
-      7 &         0.000 &        4.195 &         115162 \\
-      8 &         0.000 &       21.057 &          43824 \\
-      9 &         0.000 &        5.301 &          22071 \\
-     10 &         0.000 &        3.590 &          96407 \\
-     11 &         0.000 &        1.904 &          20693 \\
-     12 &         0.000 &       17.485 &          45240 \\
-     13 &         0.000 &       51.461 &          12423 \\
-     14 &         0.000 &       10.532 &         113951 \\
-     15 &         0.000 &      100.000 &           2712 \\
-     16 &         0.000 &        6.531 &         154331 \\
-     17 &         0.000 &        6.271 &          91053 \\
+Negative &      0 &       0 &      0 &   0.271 &      0 &       0 &       0 &       0 &       0 \\
+Missing  &  1.613 &    6.29 &  4.348 &  77.333 &  2.069 &   8.828 &   7.444 &   4.195 &  21.057 \\
+Total    &   6446 &  163111 &  62990 &   25464 &  74787 &  113952 &  142141 &  115162 &   43824 \\
 \bottomrule
 \end{tabular}
-
-}
-
-
-
+\\
+\\
+\begin{tabular}{llllllllll}
+\toprule
+SiteID   &      9 &     10 &     11 &      12 &      13 &      14 &    15 &      16 &     17 \\
+\midrule
+Negative &      0 &      0 &      0 &       0 &       0 &       0 &     0 &       0 &      0 \\
+Missing  &  5.301 &   3.59 &  1.904 &  17.485 &  51.461 &  10.532 &   100 &   6.531 &  6.271 \\
+Total    &  22071 &  96407 &  20693 &   45240 &   12423 &  113951 &  2712 &  154331 &  91053 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\\
+\\ * Negative and Missing values are in percentage (\%)}
 \end{subquestion}
 
 \begin{subquestion}{(4 points) Briefly summarise how the sites compare in terms of number of samples and amount of problematic samples.}
@@ -544,8 +540,7 @@ The percentage of total variance explained reduces exponentially as the number o
 
 
 \answerbox{16em}{
-For both the mean and PCA, the highest pollutant value belongs to NOx. The highest and lowest values recorded throughout the day are similar for both mean and first PCA, as well as for all three pollutants. The lowest value is around the 4th hour of the day (4AM) where most of the population is not commuting. The peak value is around the 9th hour of the day (9 AM). This is as expected because this is when people use their transportation vehicles to go to their place of destination for the day - work, school, etc. The value reaches a local minima at around the 15th hour of the day (3 PM), probably because most people are doing indoor activities. The pollutant value peaks again at around the 20th hour (8 PM), when everyone is communting home after completing their day.
-NOTANSWERED: CONTINUE EXPLAINING ABOUT MEAN VS PCA
+For both the mean and first principal component, the general pattern is similar - pollutant levels are lowest at 4 AM, has a global maximum at 9 AM, reached a local minima at 3 PM and reaches a local maxima at 8 PM. This corresponds to the general car usage throughout the day, where people commute in the morning and come home in the evening. The highest pollutant value for both belongs to NOx. The peak in the mean shows the highest average measurement for a pollutant. The first principal component accounts for almost 60\% of the data and the peak signifies the highest variance amongst the 72 dimensions. The second component accounts for roughly 15\% of the variance of our data and has a much lower variance than the first principal component. This is as expected because the first principal component accounts for as much of the variability in the data as possible, and all the components after that accounts for as much of the remaining variability as possible.
 }
 
 
@@ -584,7 +579,7 @@ Training set: 8937, validation set: 2234, testing set: 3724
 The baseline regressor that I used assigns the central tendency measure as the result for all predictions. The central tendency measure that I chose is the mean. 
 \\
 \\ The RMSE of the baseline regressor on the training set is: 79.714
-\\ The RMSE value of the baseline regressor on the validation set is: 80.190
+\\ The RMSE value of the baseline regressor on the validation set is: 80.205
 }
 
 
@@ -612,7 +607,7 @@ The baseline regressor that I used assigns the central tendency measure as the r
 
 
 \answerbox{10em}{
-NOTANSWERED: REFER TO ASSIGNMENT1 FEEDBACK
+The magnitude of the regression coefficient indicates how much a unit-change in the independent variable affects the target variable, therefore it depends on the magnitude of the independent and dependent variable to begin with. If the two attributes are not on the same scale, we have to normalize them so that we can compare them. When you set \texttt{normalize=True}, the regressor's X values will be normalized before regression. The values are normalized by subtracting the mean and dividing by the l2-norm.
 }
 
 
@@ -649,8 +644,7 @@ NOTANSWERED: REFER TO ASSIGNMENT1 FEEDBACK
 \end{tabular}
 \end{tabular}
 \\
-\\ The most important site is site 16 with a correlation coefficient of 0.162 and the least important site is site 6 with a correlation coefficient of -0.007.
-\\ NOTANSWERED: DIFFERENCE BETWEEN NORMALIZED AND UNNORMALIZED
+\\The most important site is site 16 (0.162) and the least important site is site 6 (-0.007). These values correspond to the values computed in Q(4.f). This is because if the variable is strongly positively correlated to the target variable, it will have a big weight in linear regression, and affect the predicted value more.
 }
 
 
@@ -667,9 +661,7 @@ KNN regression RMSE on the training set: 32.437 | validation set: 40.307
 
 Linear Regression RMSE on the training set: 39.835 | validation set: 41.127
 
-From these values we can observe that the KNN regression algorithm has a better performance (lower RMSE) compared to the linear regression algorithm.
-
-NOTANSWERED: limitation of the KNN algorithm on our dataset
+From these values we can observe that the KNN regression performs better than linear regression. The limitation of the KNN algorithm on our dataset is that it is computationally costly to calculate the distance between a new point point and all the existing points, hence the performance of the algorithm degrades.
 }
 
 
@@ -721,7 +713,7 @@ The best-case RMSE performance on the validation set is 38.902. This is obtained
 
 
 \answerbox{6em}{
-The best-case RMSE on the validation set is 45.844, with a corresponding maximum depth value set at 8. For the training set, increasing max depth reduces the RMSE to zero. For the validation set, increasing max depth overfits the training data without capturing useful patterns and cause RMSE to increase.
+The best-case RMSE on the validation set is 45.844, with a corresponding \texttt{max\_depth} value set at 8. For the training set, increasing max depth reduces the RMSE to zero. For the validation set, increasing max depth overfits the training data without capturing useful patterns and cause RMSE to increase.
 }
 
 
@@ -738,8 +730,8 @@ The best-case RMSE on the validation set is 45.844, with a corresponding maximum
 \toprule
 Regressor &  RMSE on Testing Set \\
 \midrule
- Baseline &            78.918259 \\
-   Linear &            40.516094 \\
+ Baseline &            78.952130 \\
+   Linear &            40.509027 \\
 \bottomrule
 \end{tabular}
 &
@@ -747,8 +739,8 @@ Regressor &  RMSE on Testing Set \\
 \toprule
      Regressor &  RMSE on Testing Set \\
 \midrule
-           KNN &            38.720213 \\
- Decision Tree &            43.557912 \\
+           KNN &            37.984965 \\
+ Decision Tree &            43.068871 \\
 \bottomrule
 \end{tabular}
 \end{tabular}
