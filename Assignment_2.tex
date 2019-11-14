@@ -68,7 +68,7 @@
 
 
 \answerbox{12em}{
-The training set has 5866 entries, which means it has 5866 different documents, with 1001 unique words (key features). It also has 8 different class labels representing each news group. After grouping the data into their respective classes, I found out that out of all the newsgroups, class 7 (`soc.religion.christian`) has significantly fewer data compared to the other classes. All of the other classes have more than 700 values, but class 7 has lesser than 500. By examining the mean and standard deviation of each word, I could see that the words have similar low TF-IDF values.
+The training set has 5648 entries, which means it has 5648 different documents, with 1001 unique words (key features). It also has 8 different class labels representing each news group. After grouping the data into their respective classes, I found out that out of all the newsgroups, class 7 (\texttt{soc.religion.christian}) has significantly fewer data compared to the other classes. All of the other classes have more than 700 values, but class 7 has lesser than 500. This will cause the training to be unbalanced. By examining the mean and standard deviation of each word, I could see that the words have low TF-IDF values. The minimum TF-IDF value is 0.0 and the maximum is 1.0, and the values are spread around the mean (low s.d.). 
 }
 
 
@@ -80,7 +80,7 @@ The training set has 5866 entries, which means it has 5866 different documents, 
 
 
 \answerbox{10em}{
-The testing set has 1883 documents and 1001 unique words. The training set and the testing set are split 75\% - 25\%. This split is good because it does not overfit the model. There is a similar trend in the testing set with regards to the significantly lesser amount of data for class 7. All of the other classes have above 240 values and class 7 only has 157. The percentage of class 7 in the training set and the test set and they were both 8.34\%. This is not a problem in the test set, unlike the training set because it's never a good idea to train with lesser data for a certain class.
+The testing set has 1883 documents and 1001 unique words. The training set and the testing set are split 75\% - 25\%. This split is good because it does not overfit the model. There is a similar trend in the testing set with regards to the significantly lesser amount of data for class 7. All of the other classes have above 240 values and class 7 only has 157. The percentage of class 7 in the training set and the test set and they were both 8.34\%. This is not a problem in the test set, however training a model with the unbalanced training set will yield inaccurate results.
 }
 
 
@@ -93,7 +93,7 @@ The testing set has 1883 documents and 1001 unique words. The training set and t
 
 \answerbox{10em}{
 TF-IDF weights is a statistical measure to evaluate how important a word is to a document in a collection. The importance of a word is directly proportional to the word frequency in the document, but it is offset by the frequency of the word in the entire collection.
-It is useful to consider TF-IDF as opposed to just the word frequency in the document because it helps eliminate 'unimportant' words that are used frequently from the feature vectors by setting their weight close to 0, such as stop words. It also helps avoid irrelevant and costly computations.
+It is useful to consider TF-IDF as opposed to just the word frequency in the document because it helps eliminate 'unimportant' words (such as stop words) that are used frequently from the feature vectors by setting their weight close to 0. It also helps avoid irrelevant and costly computations.
 }
 
 
@@ -150,7 +150,7 @@ The formula for Mutual Information (MI) in terms of entropy is the following:
 \text{MI}(U,V)= \sum_{i=1}^{|U|} \sum_{j=1}^{|V|} P(i,j)  \log{P(i,j)\over{P(i)P(j)}} = H(V) - H(V|U)
 \end{equation}
 
-where \textit{H(V)} is the entropy of \textit{V} and \textit{H(V|U)} is a measure of what \textit{V} doesn't say about \textit{U}. It follows that MI is the amount of information (decrease in uncertainty) you get about one variable given knowledge of another. MI calculates the statistical dependence between the two variables. Since words are not independent, knowing one of them can give us more information about the next word. MI based measures require the knowledge of the true class values which are almost never available in practice or require manual assignment by human annotators. 
+where \textit{H(V)} is the entropy of \textit{V} and \textit{H(V|U)} is a measure of what \textit{V} doesn't say about \textit{U}. It follows that MI is the amount of information (decrease in uncertainty) you get about one variable given knowledge of another. MI calculates the statistical dependence between the two variables. In our case, words are not independent so knowing one of them can give us more insight about the next word, and possibly about its class. MI measures require the knowledge of the true class values which are almost never available in practice or require manual assignment (annotations). 
 }
 
 
@@ -295,7 +295,7 @@ Average validation-set F1-score = 0.668
 
 
 \answerbox{11em}{
-The most optimal value of C is 1.0 with a corresponding F1-score of 0.668. I chose this value by examining the F1-scores of the validation set and looked at the maximum, and find the corresponding value of C that yields that value. The effect of the regularisation parameter C on the optimisation is strong. This causes the model to become less sensitive to noise. However, at some point it becomes insensitive to important features. this is shown by the F1-score being low on small C values. Then the F1-score increases when C increased and reached its peak at 1.0, and after that it continues to decrease until it reaches a (somewhat) plateau.
+The most optimal value of C is 1.0 with a corresponding F1-score of 0.668. I chose this value by examining the F1-scores of the validation set and looked at the maximum, and find the corresponding value of C that yields that value. The effect of the regularisation parameter C on the optimisation is strong. This causes the model to become less sensitive to noise. However, at some point it becomes insensitive to important features. This is shown by the F1-score being low on small C values. Then the F1-score increases when C increased and reached its peak at 1.0, and after that it continues to decrease until it reaches a (somewhat) plateau.
 }
 
 
