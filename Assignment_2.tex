@@ -266,8 +266,8 @@ The LogisticRegression Classifier can fit binary, One-vs-Rest, or multinomial lo
 
 
 \answerbox{9em}{
-Average validation-set F1-score = 0.668
-\\Standard deviation = 0.0158
+Average validation-set F1-score = 0.669
+\\Standard deviation = 0.0169
 \\
 \\The baseline classifier has significantly lower F1-score at 0.0291. Therefore, the logistic regression classifier performs significantly better than the baseline classifier. This shows a successful classification by the logistic model.
 }
@@ -295,7 +295,7 @@ Average validation-set F1-score = 0.668
 
 
 \answerbox{11em}{
-The most optimal value of C is 1.0 with a corresponding F1-score of 0.668. I chose this value by examining the F1-scores of the validation set and looked at the maximum, and find the corresponding value of C that yields that value. The effect of the regularisation parameter C on the optimisation is strong. This causes the model to become less sensitive to noise. However, at some point it becomes insensitive to important features. This is shown by the F1-score being low on small C values. Then the F1-score increases when C increased and reached its peak at 1.0, and after that it continues to decrease until it reaches a (somewhat) plateau.
+The most optimal value of C is 1.0 with a corresponding F1-score of 0.669. I chose this value by examining the F1-scores of the validation set and looked at the maximum, and find the corresponding value of C that yields that value. The effect of the regularisation parameter C on the optimisation is strong. This causes the model to become less sensitive to noise. However, at some point it becomes insensitive to important features. This is shown by the F1-score being low on small C values. Then the F1-score increases when C increased and reached its peak at 1.0, and after that it continues to decrease until it reaches a (somewhat) plateau.
 }
 
 
@@ -307,7 +307,7 @@ The most optimal value of C is 1.0 with a corresponding F1-score of 0.668. I cho
 
 
 \answerbox{7em}{
-The F1-score on the test set is 0.675 after using the optimal C-value and retraining on the entire training set. This value is higher than the average validation-set F1-score (0.668) that I calculated in Q(3.d) and the average validation-set F1-score (0.668) that I calculated in Q(3.e) using folds.
+The F1-score on the test set is 0.675 after using the optimal C-value and retraining on the entire training set. This value is higher than the average validation-set F1-score (0.669) using 10 folds that I calculated in Q(3.d) and the average validation-set F1-score (0.669) that I calculated in Q(3.e) while trying to optimise the value of C.
 }
 
 
@@ -511,7 +511,7 @@ For NO gas, the highest correlation is between site 2 and 16 (0.79), followed by
 
 
 \answerbox{9em}{
-The percentage of total variance explained reduces exponentially as the number of principal components increase. The highest percentage of total variance explained is when the number of principal components is 1. The number of components which collectively explain at least 95\% of the variance is 10.
+The percentage of total variance explained reduces exponentially as the number of principal components increase. The highest percentage of total variance explained is when the number of principal components is 1. The number of components which collectively explain at least 95\% of the variance is 11. The first principal component accounts for almost 60\% of the data. This is as expected because the first principal component accounts for as much of the variability in the data as possible, and all the components after that account for as much of the remaining variability as possible.
 }
 
 
@@ -548,7 +548,7 @@ The percentage of total variance explained reduces exponentially as the number o
 
 
 \answerbox{16em}{
-There is an observable pattern in the mean plot - pollutant levels are lowest at 3 AM, has a global maximum at 8 AM, reached a local minima at 2 PM and reaches a local maxima at 6 PM. This corresponds to the general car usage throughout the day, where people commute in the morning to work/school/etc. and comes home in the evening. The peak in the mean shows the highest average measurement for a pollutant. The pattern is rather similar in the first principal component. The first principal component accounts for almost 60\% of the data and the peak signifies the highest variance amongst the 72 dimensions. The second component accounts for roughly 15\% of the variance of our data and has a much lower variance than the first principal component. This is as expected because the first principal component accounts for as much of the variability in the data as possible, and all the components after that accounts for as much of the remaining variability as possible.
+There is an observable pattern in the mean plot - pollutant levels are lowest at 3 AM, has a global maximum at 8 AM, reached a local minima at 2 PM and reaches a local maxima at 6 PM. This corresponds to the general car usage throughout the day, where people commute in the morning to work/school/etc. and comes home in the evening. The peak in the mean shows the highest average measurement for a pollutant. However, the peak in the first component shows the maximum variance throughout the 24 hours. The first component follows a pattern similar to the mean despite them signifying different things. This is because the pattern in the mean is greatly affected by the pollutant values on work days (more work days than weekends) and the variance is caused by a different pattern that emerges on weekends (people not commuting as much). Looking at the principal components, I noticed that the value of NO2 does not vary as much as the other pollutants.
 }
 
 
