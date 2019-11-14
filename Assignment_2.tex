@@ -525,8 +525,13 @@ The percentage of total variance explained reduces exponentially as the number o
 
 \answerbox{50em}{
 \begin{center}
+
     \includegraphics[width=1.0\textwidth]{5_d_mean.png}
+
+
     \includegraphics[width=1.0\textwidth]{5_d_pca1.png}
+
+
     \includegraphics[width=1.0\textwidth]{5_d_pca2.png}
 \end{center}
 }
@@ -540,7 +545,7 @@ The percentage of total variance explained reduces exponentially as the number o
 
 
 \answerbox{16em}{
-For both the mean and first principal component, the general pattern is similar - pollutant levels are lowest at 4 AM, has a global maximum at 9 AM, reached a local minima at 3 PM and reaches a local maxima at 8 PM. This corresponds to the general car usage throughout the day, where people commute in the morning and come home in the evening. The highest pollutant value for both belongs to NOx. The peak in the mean shows the highest average measurement for a pollutant. The first principal component accounts for almost 60\% of the data and the peak signifies the highest variance amongst the 72 dimensions. The second component accounts for roughly 15\% of the variance of our data and has a much lower variance than the first principal component. This is as expected because the first principal component accounts for as much of the variability in the data as possible, and all the components after that accounts for as much of the remaining variability as possible.
+There is an observable pattern in the mean plot - pollutant levels are lowest at 3 AM, has a global maximum at 8 AM, reached a local minima at 2 PM and reaches a local maxima at 6 PM. This corresponds to the general car usage throughout the day, where people commute in the morning to work/school/etc. and comes home in the evening. The peak in the mean shows the highest average measurement for a pollutant. The pattern is rather similar in the first principal component. The first principal component accounts for almost 60\% of the data and the peak signifies the highest variance amongst the 72 dimensions. The second component accounts for roughly 15\% of the variance of our data and has a much lower variance than the first principal component. This is as expected because the first principal component accounts for as much of the variability in the data as possible, and all the components after that accounts for as much of the remaining variability as possible.
 }
 
 
