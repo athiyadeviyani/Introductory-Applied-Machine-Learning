@@ -68,7 +68,7 @@
 
 
 \answerbox{12em}{
-The training set has 5866 entries, which means it has 5866 different documents, with 1001 unique words (key features). It also has 8 different class labels representing each news group. After grouping the data into their respective classes, I found out that out of all the newsgroups, class 7 (`soc.religion.christian`) has significantly fewer data compared to the other classes. All of the other classes have more than 700 values, but class 7 has lesser than 500. By examining the mean and standard deviation of each word, I could see that the words have similar low TF-IDF values.
+The training set has 5648 entries, which means it has 5648 different documents, with 1001 unique words (key features). It also has 8 different class labels representing each news group. After grouping the data into their respective classes, I found out that out of all the newsgroups, class 7 (\texttt{soc.religion.christian}) has significantly fewer data compared to the other classes. All of the other classes have more than 700 values, but class 7 has lesser than 500. This will cause the training to be unbalanced. By examining the mean and standard deviation of each word, I could see that the words have low TF-IDF values. The minimum TF-IDF value is 0.0 and the maximum is 1.0, and the values are spread around the mean (low s.d.). 
 }
 
 
@@ -80,7 +80,7 @@ The training set has 5866 entries, which means it has 5866 different documents, 
 
 
 \answerbox{10em}{
-The testing set has 1883 documents and 1001 unique words. The training set and the testing set are split 75\% - 25\%. This split is good because it does not overfit the model. There is a similar trend in the testing set with regards to the significantly lesser amount of data for class 7. All of the other classes have above 240 values and class 7 only has 157. The percentage of class 7 in the training set and the test set and they were both 8.34\%. This is not a problem in the test set, unlike the training set because it's never a good idea to train with lesser data for a certain class.
+The testing set has 1883 documents and 1001 unique words. The training set and the testing set are split 75\% - 25\%. This split is good because it does not overfit the model. There is a similar trend in the testing set with regards to the significantly lesser amount of data for class 7. All of the other classes have above 240 values and class 7 only has 157. The percentage of class 7 in the training set and the test set and they were both 8.34\%. This is not a problem in the test set, however training a model with the unbalanced training set will yield inaccurate results.
 }
 
 
@@ -93,7 +93,7 @@ The testing set has 1883 documents and 1001 unique words. The training set and t
 
 \answerbox{10em}{
 TF-IDF weights is a statistical measure to evaluate how important a word is to a document in a collection. The importance of a word is directly proportional to the word frequency in the document, but it is offset by the frequency of the word in the entire collection.
-It is useful to consider TF-IDF as opposed to just the word frequency in the document because it helps eliminate 'unimportant' words that are used frequently from the feature vectors by setting their weight close to 0, such as stop words. It also helps avoid irrelevant and costly computations.
+It is useful to consider TF-IDF as opposed to just the word frequency in the document because it helps eliminate 'unimportant' words (such as stop words) that are used frequently from the feature vectors by setting their weight close to 0. It also helps avoid irrelevant and costly computations.
 }
 
 
@@ -150,7 +150,7 @@ The formula for Mutual Information (MI) in terms of entropy is the following:
 \text{MI}(U,V)= \sum_{i=1}^{|U|} \sum_{j=1}^{|V|} P(i,j)  \log{P(i,j)\over{P(i)P(j)}} = H(V) - H(V|U)
 \end{equation}
 
-where \textit{H(V)} is the entropy of \textit{V} and \textit{H(V|U)} is a measure of what \textit{V} doesn't say about \textit{U}. It follows that MI is the amount of information (decrease in uncertainty) you get about one variable given knowledge of another. MI calculates the statistical dependence between the two variables. Since words are not independent, knowing one of them can give us more information about the next word. MI based measures require the knowledge of the true class values which are almost never available in practice or require manual assignment by human annotators. 
+where \textit{H(V)} is the entropy of \textit{V} and \textit{H(V|U)} is a measure of what \textit{V} doesn't say about \textit{U}. It follows that MI is the amount of information (decrease in uncertainty) you get about one variable given knowledge of another. MI calculates the statistical dependence between the two variables. In our case, words are not independent so knowing one of them can give us more insight about the next word, and possibly about its class. MI measures require the knowledge of the true class values which are almost never available in practice or require manual assignment (annotations). 
 }
 
 
@@ -266,8 +266,8 @@ The LogisticRegression Classifier can fit binary, One-vs-Rest, or multinomial lo
 
 
 \answerbox{9em}{
-Average validation-set F1-score = 0.668
-\\Standard deviation = 0.0158
+Average validation-set F1-score = 0.669
+\\Standard deviation = 0.0169
 \\
 \\The baseline classifier has significantly lower F1-score at 0.0291. Therefore, the logistic regression classifier performs significantly better than the baseline classifier. This shows a successful classification by the logistic model.
 }
@@ -295,7 +295,7 @@ Average validation-set F1-score = 0.668
 
 
 \answerbox{11em}{
-The most optimal value of C is 1.0 with a corresponding F1-score of 0.668. I chose this value by examining the F1-scores of the validation set and looked at the maximum, and find the corresponding value of C that yields that value. The effect of the regularisation parameter C on the optimisation is strong. This causes the model to become less sensitive to noise. However, at some point it becomes insensitive to important features. this is shown by the F1-score being low on small C values. Then the F1-score increases when C increased and reached its peak at 1.0, and after that it continues to decrease until it reaches a (somewhat) plateau.
+The most optimal value of C is 1.0 with a corresponding F1-score of 0.669. I chose this value by examining the F1-scores of the validation set and looked at the maximum, and find the corresponding value of C that yields that value. The effect of the regularisation parameter C on the optimisation is strong. This causes the model to become less sensitive to noise. However, at some point it becomes insensitive to important features. This is shown by the F1-score being low on small C values. Then the F1-score increases when C increased and reached its peak at 1.0, and after that it continues to decrease until it reaches a (somewhat) plateau.
 }
 
 
@@ -307,7 +307,7 @@ The most optimal value of C is 1.0 with a corresponding F1-score of 0.668. I cho
 
 
 \answerbox{7em}{
-The F1-score on the test set is 0.675 after using the optimal C-value and retraining on the entire training set. This value is higher than the average validation-set F1-score (0.668) that I calculated in Q(3.d) and the average validation-set F1-score (0.668) that I calculated in Q(3.e) using folds.
+The F1-score on the test set is 0.675 after using the optimal C-value and retraining on the entire training set. This value is higher than the average validation-set F1-score (0.669) using 10 folds that I calculated in Q(3.d) and the average validation-set F1-score (0.669) that I calculated in Q(3.e) while trying to optimise the value of C.
 }
 
 
@@ -366,22 +366,21 @@ as having missing data, and similarly for negative entries. \hint{Pandas has a h
 \toprule
 SiteID   &      0 &       1 &      2 &       3 &      4 &       5 &       6 &       7 &       8 \\
 \midrule
-Negative &      0 &       0 &      0 &   0.271 &      0 &       0 &       0 &       0 &       0 \\
+Negative &      0 &       0 &  0.005 &   0.778 &  0.005 &       0 &   0.003 &   0.278 &       0 \\
 Missing  &  1.613 &    6.29 &  4.348 &  77.333 &  2.069 &   8.828 &   7.444 &   4.195 &  21.057 \\
 Total    &   6446 &  163111 &  62990 &   25464 &  74787 &  113952 &  142141 &  115162 &   43824 \\
 \bottomrule
 \end{tabular}
-\\
-\\
 \begin{tabular}{llllllllll}
 \toprule
 SiteID   &      9 &     10 &     11 &      12 &      13 &      14 &    15 &      16 &     17 \\
 \midrule
-Negative &      0 &      0 &      0 &       0 &       0 &       0 &     0 &       0 &      0 \\
+Negative &      0 &  0.004 &  0.087 &       0 &   0.016 &       0 &     0 &   0.014 &  0.002 \\
 Missing  &  5.301 &   3.59 &  1.904 &  17.485 &  51.461 &  10.532 &   100 &   6.531 &  6.271 \\
 Total    &  22071 &  96407 &  20693 &   45240 &   12423 &  113951 &  2712 &  154331 &  91053 \\
 \bottomrule
 \end{tabular}
+
 \end{adjustbox}
 \\
 \\ * Negative and Missing values are in percentage (\%)}
@@ -392,7 +391,7 @@ Total    &  22071 &  96407 &  20693 &   45240 &   12423 &  113951 &  2712 &  154
 
 
 \answerbox{11em}{
-Site 15 has the highest problematic values percentage of 100\%. After examining the table, I can see that there are no samples for site 15 (all the problematic values are due to missing samples). The next highest problematic values percentage belongs to Site 3 at 77.6\%, with a mixture of negative and missing samples. In fact, all the negative samples in the dataset belongs to Site 3. This value is followed by site 13 (51.46\%), site 8 (21.1\%), and site 12 (17.48\%). Every other site has a problematic sample percentage of less than 10\%.
+Site 15 has the highest problematic values percentage of 100\%. After examining the table, I can see that there are no samples for site 15 (all the problematic values are due to missing samples). The next highest problematic values percentage belongs to Site 3 at 78.1\%, with a mixture of negative and missing samples. The next highest problematic values percentage belongs to site 13 (51.48\%), site 8 (21.1\%), site 12 (17.49\%), and site 14 (10.53\%). Every other site has a problematic sample percentage of less than 10\%.
 }
 
 
@@ -478,11 +477,7 @@ For NO gas, the highest correlation is between site 2 and 16 (0.79), followed by
 
 \answerbox{40em}{
 \begin{center}
-    \includegraphics[width=0.9\textwidth]{5_a_1.png}
-    \includegraphics[width=0.9\textwidth]{5_a_2.png}
-    \includegraphics[width=0.9\textwidth]{5_a_3.png}
-    \includegraphics[width=0.9\textwidth]{5_a_4.png}
-    \includegraphics[width=0.9\textwidth]{5_a_5.png}
+    \includegraphics[width=1.0\textwidth]{5_a.png}
 \end{center}
 }
 
@@ -511,7 +506,7 @@ For NO gas, the highest correlation is between site 2 and 16 (0.79), followed by
 
 
 \answerbox{9em}{
-The percentage of total variance explained reduces exponentially as the number of principal components increase. The highest percentage of total variance explained is when the number of principal components is 1. The number of components which collectively explain at least 95\% of the variance is 10.
+The percentage of total variance explained reduces exponentially as the number of principal components increase. The highest percentage of total variance explained is when the number of principal components is 1. The number of components which collectively explain at least 95\% of the variance is 11. The first principal component accounts for almost 60\% of the data. This is as expected because the first principal component accounts for as much of the variability in the data as possible, and all the components after that account for as much of the remaining variability as possible.
 }
 
 
@@ -525,9 +520,17 @@ The percentage of total variance explained reduces exponentially as the number o
 
 \answerbox{50em}{
 \begin{center}
-    \includegraphics[width=1.0\textwidth]{5_d_mean.png}
-    \includegraphics[width=1.0\textwidth]{5_d_pca1.png}
-    \includegraphics[width=1.0\textwidth]{5_d_pca2.png}
+
+    \includegraphics[width=1.0\textwidth]{5_d_mean.png}\\
+    \vspace{0.25cm}
+
+
+    \includegraphics[width=1.0\textwidth]{5_d_pca1.png}\\
+    \vspace{0.25cm}
+
+
+    \includegraphics[width=1.0\textwidth]{5_d_pca2.png}\\
+    \vspace{0.25cm}
 \end{center}
 }
 
@@ -540,7 +543,7 @@ The percentage of total variance explained reduces exponentially as the number o
 
 
 \answerbox{16em}{
-For both the mean and first principal component, the general pattern is similar - pollutant levels are lowest at 4 AM, has a global maximum at 9 AM, reached a local minima at 3 PM and reaches a local maxima at 8 PM. This corresponds to the general car usage throughout the day, where people commute in the morning and come home in the evening. The highest pollutant value for both belongs to NOx. The peak in the mean shows the highest average measurement for a pollutant. The first principal component accounts for almost 60\% of the data and the peak signifies the highest variance amongst the 72 dimensions. The second component accounts for roughly 15\% of the variance of our data and has a much lower variance than the first principal component. This is as expected because the first principal component accounts for as much of the variability in the data as possible, and all the components after that accounts for as much of the remaining variability as possible.
+There is an observable pattern in the mean plot - pollutant levels are lowest at 3 AM, has a global maximum at 8 AM, reached a local minima at 2 PM and reaches a local maxima at 6 PM. This corresponds to the general car usage throughout the day, where people commute in the morning to work/school/etc. and comes home in the evening. The peak in the mean shows the highest average measurement for a pollutant. However, the peak in the first component shows the maximum variance throughout the 24 hours. The first component follows a pattern similar to the mean despite them signifying different things. This is because the pattern in the mean is greatly affected by the pollutant values on work days (more work days than weekends) and the variance is caused by a different pattern that emerges on weekends (people not commuting as much). Looking at the principal components, I noticed that the value of NO2 does not vary as much as the other pollutants.
 }
 
 
